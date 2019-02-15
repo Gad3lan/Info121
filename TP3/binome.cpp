@@ -113,11 +113,8 @@ void testracineCarre() {
 
 double racineNieme(double x, int n) {
 	double un = x;
-	double un1;
 	while(!presqueEgal(power(un, n), x)) {
-		un1 = (1/n) * (((n-1)*un) + (x/power(un, n-1)));
-		un = un1;
-		cout << un1 << endl;
+		un = (1./n) * (((n-1)*un) + (x/power(un, n-1)));
 	}
 	return un;
 }
@@ -125,6 +122,34 @@ double racineNieme(double x, int n) {
 void testracineNieme() {
 	double res = racineNieme(2, 5);
 	ASSERT(res <= 1.1486983 + epsilon && res >= 1.1486983 - epsilon);
+}
+
+double exponentielle(double a) {
+	if (a == 0) {
+	
+		return 1;
+	}
+	double tot = power(a, 0)/factoriel(0);
+	double tmp = 0;
+	cout << tmp << " " << tot << endl;
+	for (int i = 1; presqueEgal(tmp, tot); i++) {
+		tmp = tot;
+		tot += power(a, i)/factoriel(i);
+		cout << tmp <<  " " << tot << endl;
+	}
+	cout << tot << endl;
+	return tot;
+}
+
+void testExponentielle() {
+	double res = exponentielle(0);
+	ASSERT(res <= 1 + epsilon && res >= 1 - epsilon);
+	cout << res << endl;
+	res = exponentielle(1);
+	ASSERT(res <= 2.71828182 + epsilon && res >= 2.71828182 - epsilon);
+	cout << res << endl;
+	res = exponentielle(10);
+	ASSERT(res <= 22026.4657948 + epsilon && res >= 22026.4657948 - epsilon);
 }
 
 /** Fonction principale
@@ -136,10 +161,12 @@ int main() {
     testpresqueEgal();
     testracineCarre();
     testracineNieme();
+    testExponentielle();
     
-    double x;
-    cin >> x;
-    cout << "La racine carré de " << x << " est : " << racineCarre(x) << endl;
+    //double x;
+    //cout << "Entrer un nombre : ";
+    //cin >> x;
+    //cout << "La racine carré de " << x << " est : " << racineCarre(x) << endl;
     
     return 0;
 }
