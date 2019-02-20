@@ -18,12 +18,12 @@ double abs(double x) {
  *  @param n un entier
  *  @return un entier
  **/
-int factoriel(int n) {
+double factoriel(int n) {
     if (n < 0) {
         cerr << "Factoriel argument negatif file " << __FILE__ << " line " << __LINE__ << endl;
         exit(1);
     }
-    int res = 1, i;
+    double res = 1, i;
     for (i = 1 ; i <= n ; i ++) {
         res *= i;
     }
@@ -125,31 +125,64 @@ void testracineNieme() {
 }
 
 double exponentielle(double a) {
-	if (a == 0) {
-	
-		return 1;
-	}
-	double tot = power(a, 0)/factoriel(0);
-	double tmp = 0;
-	cout << tmp << " " << tot << endl;
-	for (int i = 1; presqueEgal(tmp, tot); i++) {
+	double tot = 0;
+	double tmp = -64564;
+	for (int i = 0; !presqueEgal(tmp, tot); i++) {
 		tmp = tot;
 		tot += power(a, i)/factoriel(i);
-		cout << tmp <<  " " << tot << endl;
 	}
-	cout << tot << endl;
 	return tot;
 }
 
 void testExponentielle() {
 	double res = exponentielle(0);
 	ASSERT(res <= 1 + epsilon && res >= 1 - epsilon);
-	cout << res << endl;
 	res = exponentielle(1);
 	ASSERT(res <= 2.71828182 + epsilon && res >= 2.71828182 - epsilon);
-	cout << res << endl;
-	res = exponentielle(10);
-	ASSERT(res <= 22026.4657948 + epsilon && res >= 22026.4657948 - epsilon);
+}
+
+double exponentielle2(double a) {
+	double tot = 1;
+	double tmp = -56453;
+	double puis = 1;
+	double fact = 1;
+
+	for (int i = 1; !presqueEgal(tot, tmp); i++){
+		tmp = tot;
+		puis *= a;
+		fact *= i;
+		tot += puis/fact;
+	}
+	return tot;
+}
+
+void testExponentielle2() {
+	double res = exponentielle2(0);
+	ASSERT(res <= 1 + epsilon && res >= 1 - epsilon);
+	res = exponentielle2(1);
+	ASSERT(res <= 2.71828182 + epsilon && res >= 2.71828182 - epsilon);
+}
+
+double logarithme(double a) {
+	double un = a;
+	double tmp = -135464;
+	while(!presqueEgal(un, tmp)) {
+		tmp = un;
+		un = un + a / exponentielle(un) - 1;
+	}
+	return un;
+}
+
+bool verifie(double a) {
+	return presqueEgal(a, exponentielle(logarithme(a)));
+}
+
+double racine2(double a) {
+	return exponentielle(logarithme(a)/2);
+}
+
+double racinenieme2 (double a, double n) {
+	return exponentielle(logarithme(a)/n);
 }
 
 /** Fonction principale
@@ -162,6 +195,7 @@ int main() {
     testracineCarre();
     testracineNieme();
     testExponentielle();
+    testExponentielle2();
     
     //double x;
     //cout << "Entrer un nombre : ";
