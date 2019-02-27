@@ -50,14 +50,18 @@ Complexe inverse(Complexe c) {
 }
 
 Complexe sqrt(Complexe c) {
-	Complexe u = {c.re, EPSILON};
+	Complexe u;
+	if (c.re < 0)
+		u = {c.re, EPSILON};
+	else 
+		u = c;
 	while(norme_carre(sub(produit(u, u), c))/norme_carre(c) > EPSILON*EPSILON)
 		u = div(somme(u, produit(c,inverse(u))), 2);
 	return u;
 }
 
 int main() {
-	Complexe c = {1, 2};
+	Complexe c = {1.2367, -4.5};
 	Complexe c2 = {2, 1};
 	Complexe conj = c;
 	conjugue(c);
