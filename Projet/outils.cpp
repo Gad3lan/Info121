@@ -18,7 +18,7 @@ void afficheGrille(Grille g) {
 	cout << endl;
 }
 
-Coord toPos(int x, int y) {
+Coord versPos(int x, int y) {
 	return {x, y};
 }
 

@@ -41,13 +41,13 @@ Animal creerAnimal(Coord p, typeAnimal t) {
 }
 
 void repro(Grille &g, typeAnimal t, Coord c) {
-	EnsCoord e = voisins(c, g, rien);
+	EnsCoord e = voisins(c, g, vide);
 	switch (t)
 	{
 		case renard :
 			if (g.cases[c.y][c.x].nourLapin >= g.cases[c.y][c.x].nourReprod && e.taille > 0) {
 				if (rand()%100 <= g.cases[c.y][c.x].probNaissanceRenard) {
-					Coord newc = coordAlea(e);
+					Coord newc = coordAlea e);
 					g.cases[newc.y][newc.x] = creerAnimal(newc, renard);
 				}
 			}
@@ -55,7 +55,7 @@ void repro(Grille &g, typeAnimal t, Coord c) {
 		case lapin :
 			if (e.taille >= g.cases[c.y][c.x].espaceLibreNaissanceLapin) {
 				if (rand()%100 <= g.cases[c.y][c.x].probNaissanceLapin) {
-					Coord newc = coordAlea(e);
+					Coord newc = coordAlea e);
 					g.cases[newc.y][newc.x] = creerAnimal(newc, lapin);
 				}
 			}

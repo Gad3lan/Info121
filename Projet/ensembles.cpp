@@ -11,7 +11,7 @@ EnsCoord voisins(Coord c, Grille g, typeAnimal t) {
 	for (int i = minY; i <= maxY; i++) {
 		for (int j = minX; j <= maxX; j++) {
 			if ((i != c.y || j != c.x) && g.cases[i][j].type == t) {
-				e.ens[e.taille] = toPos(j, i);
+				e.ens[e.taille] = versPos(j, i);
 				e.taille++;
 			}
 		}
