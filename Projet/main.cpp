@@ -2,6 +2,7 @@
 #include <vector>
 #include <random>
 #include <time.h>
+#include <unistd.h>
 
 using namespace std;
 
@@ -229,14 +230,21 @@ void compteAnimal(Grille g) {
 	cout << "\033[97mNb renards: " << r << ", Nb lapins: " << l << endl;
 }
 
+void clear() {
+	// CSI[2J clears screen, CSI[H moves the cursor to top-left corner
+	cout << "\x1B[2J\x1B[H";
+}
+
 int main() {
 	srand (time(NULL));
 	Grille g = initGrille();
 	afficheGrille(g);
 	//compteAnimal(g);
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 20; i++) {
+		clear();
 		g = deplacementGlobal(g);
 		afficheGrille(g);
+		usleep(400000);
 	}
 	//compteAnimal(g);
 	return 0;
