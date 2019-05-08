@@ -40,8 +40,30 @@ Animal creerAnimal(Coord p, typeAnimal t) {
 	return a;
 }
 
+bool mangeRenard(Grille &g, Grille &newg, Animal &a, Coord c) {
+	if (a.type != renard)
+		return false;
+	EnsCoord ensLapin = voisins(a.pos, g, lapin);
+	if (ensLapin.taille > 0) {
+		Coord newc = coordAlea(ensLapin);
+		g.cases[newc.y][newc.x] = creerAnimal(c, vide);
+		a.pos = newc;
+		if (a.nourLapin < a.maxNour)
+			a.nourLapin++;
+		newg.cases[newc.y][newc.x] = a;
+		return true;
+	} else {
+		if (a.nourLapin <= 0) {
+			g.cases[c.y][c.x] = creerAnimal(c, vide);
+			return true;
+		}
+		a.nourLapin--;
+		return false;
+	}
+}
+
 void repro(Grille &g, typeAnimal t, Coord c) {
-	EnsCoord e = voisins(c, g, rien);
+	EnsCoord e = voisins(c, g, vide);
 	switch (t)
 	{
 		case renard :

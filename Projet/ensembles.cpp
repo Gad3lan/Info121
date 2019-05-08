@@ -11,7 +11,7 @@ EnsCoord voisins(Coord c, Grille g, typeAnimal t) {
 	for (int i = minY; i <= maxY; i++) {
 		for (int j = minX; j <= maxX; j++) {
 			if ((i != c.y || j != c.x) && g.cases[i][j].type == t) {
-				e.ens[e.taille] = toPos(j, i);
+				e.ens[e.taille] = versPos(j, i);
 				e.taille++;
 			}
 		}
@@ -40,11 +40,16 @@ void afficheEns(EnsCoord e) {
 	cout << endl;
 }
 
+void ajouteCoord(EnsCoord &e, Coord c) {
+	e.ens[e.taille] = c;
+	e.taille++;
+}
+
 void retireCoord(EnsCoord &e, Coord c) {
 	for (int i = 0; i < e.taille; i++) {
 		if (c.x == e.ens[i].x && c.y == e.ens[i].y) {
 			e.taille--;
-			e.ens[e.taille] = e.ens[i];
+			e.ens[i] = e.ens[e.taille];
 			break;
 		}
 	}

@@ -8,7 +8,7 @@ void afficheGrille(Grille g) {
 	for (int i = 0; i < TAILLE; i++) {
 		for (int j = 0; j < TAILLE; j++) {
 			if (g.cases[i][j].type == renard) cout << "\033[31m\u25A0 ";
-			else if (g.cases[i][j].type == lapin) cout << "\033[34m\u25A0 ";
+			else if (g.cases[i][j].type == lapin) cout << "\033[36m\u25A0 ";
 			else {
 				cout << "\033[97m\u25A0 ";
 			}
@@ -18,7 +18,7 @@ void afficheGrille(Grille g) {
 	cout << endl;
 }
 
-Coord toPos(int x, int y) {
+Coord versPos(int x, int y) {
 	return {x, y};
 }
 

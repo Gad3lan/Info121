@@ -22,7 +22,7 @@ struct EnsCoord {
 	Coord ens[MAXOBJ];
 };
 
-enum typeAnimal {renard, lapin, rien};
+enum typeAnimal {renard, lapin, vide};
 
 struct Animal {
 	typeAnimal type;
@@ -40,7 +40,9 @@ struct Grille {
 	Animal cases[TAILLE][TAILLE];
 };
 
-Coord toPos(int x, int y);
+Coord versPos(int x, int y);
+void ajouteCoord(EnsCoord &e, Coord c);
+bool mangeRenard(Grille &g, Grille &newg, Animal &a, Coord c);
 Animal creerAnimal(Coord p, typeAnimal t);
 Grille initGrille();
 EnsCoord voisins(Coord c, Grille g, typeAnimal t);

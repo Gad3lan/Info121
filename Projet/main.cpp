@@ -9,7 +9,7 @@ int main() {
 		g = deplacementGlobal(g);
 		afficheGrille(g);
 		compteAnimal(g);
-		usleep(100000);
+		usleep(200000);
 	}
 	//compteAnimal(g);
 	return 0;
