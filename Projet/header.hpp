@@ -6,7 +6,7 @@
 
 using namespace std;
 
-const int TAILLE = 20;
+const int TAILLE = 30;
 const int MAXOBJ = TAILLE*TAILLE;
 
 const int probRenard = 7;
@@ -55,5 +55,5 @@ Grille deplacement(Grille &g, Grille newg, typeAnimal t);
 Grille creeGrilleVide();
 void afficheGrille(Grille g);
 Grille deplacementGlobal(Grille g);
-void compteAnimal(Grille g);
+bool compteAnimal(Grille g);
 void clear();

@@ -22,7 +22,7 @@ Coord versPos(int x, int y) {
 	return {x, y};
 }
 
-void compteAnimal(Grille g) {
+bool compteAnimal(Grille g) {
 	int r = 0;
 	int l = 0;
 	for (int i = 0; i < TAILLE; i++) {
@@ -31,5 +31,6 @@ void compteAnimal(Grille g) {
 			if (g.cases[i][j].type == lapin) l++;
 		}
 	}
-	cout << "\033[97mNb renards: " << r << ", Nb lapins: " << l << endl;
+	cout << "\033[97mNb renards: " << r << ", Nb lapins: " << l << endl << endl;
+	return (r > 0 || l > 0);
 }
